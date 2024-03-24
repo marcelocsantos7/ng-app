@@ -1,0 +1,29 @@
+<!-- <label class="block">Server Name</label>
+<input type="text" class="mt-3 mb-5  ring-8" (input)="onUpdateServerName($event)"> -->
+<label class="block">Server Name</label>
+<input type="text" class="mt-3 mb-5  ring-8" [(ngModel)]="serverName">
+<!-- @if (serverCreated){
+    <p>Only visible if 'someCondition' is true</p>
+} -->
+
+<p *ngIf="serverCreated; else noServer">Server was created. Name is {{ serverName }}</p>
+<ng-template #noServer>
+    <p>No server was created.</p>
+</ng-template>
+<button class="p-3 text-white rounded block bg-slate-500" [disabled]="!allowNewServer" (click)="onCreateServer()">
+    Add Server
+</button>
+
+<p [innerText]="allowNewServer"></p>
+<!-- <p>{{ serverCreationStatus }}</p> -->
+@for (server of servers; track server){
+<app-server></app-server>
+}
+<!-- <app-server *ngFor="let server of servers"></app-server> -->
+<br>
+
+<input type="text" class="mt-3 mb-5  ring-1" [(ngModel)]="userName">
+<p>{{ userName }}</p>
+<button class="p-3 text-white rounded block bg-slate-500" (click)="resetUserName()" [disabled]="userName === ''">
+    Reset Name
+</button>
